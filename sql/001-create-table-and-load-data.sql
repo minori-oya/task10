@@ -4,7 +4,7 @@ CREATE TABLE clients (
   id int unsigned AUTO_INCREMENT,
   name VARCHAR(60) NOT NULL,
   age int NOT NULL,
-  phone_number VARCHAR(15) NOT NULL,
+  phoneNumber VARCHAR(15) NOT NULL,
   PRIMARY KEY(id)
 );
 

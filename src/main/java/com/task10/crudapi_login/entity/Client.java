@@ -1,4 +1,4 @@
-package com.task10.crudapi_login;
+package com.task10.crudapi_login.entity;
 
 public class Client {
     private int id;

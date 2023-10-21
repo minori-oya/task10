@@ -1,8 +1,6 @@
 package com.task10.crudapi_login.controller;
 
-
 import com.task10.crudapi_login.entity.Client;
-
 
 public class ClientResponse {
     private int id;

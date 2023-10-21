@@ -26,4 +26,10 @@ public class ClientServiceImpl implements ClientService {
         Optional<Client> client = clientMapper.findById(id);
         return client.orElseThrow(() -> new ClientNotFoundException("client not found:" + id));
     }
+
+    @Override
+    public Client createClient(Client client) {
+        clientMapper.insertClient(client);
+        return client;
+    }
 }

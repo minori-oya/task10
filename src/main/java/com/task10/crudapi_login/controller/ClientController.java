@@ -36,7 +36,7 @@ public class ClientController {
 
     @PostMapping("clients")
     public ResponseEntity<Map<String, String>> createClient(@RequestBody @Validated ClientCreateForm clientCreateForm, UriComponentsBuilder uriComponentsBuilder) {
-        Client client = clientService.createClient(clientCreateForm.convertToClient());
+        Client client = clientService.create(clientCreateForm.convertToClient());
         URI uri = uriComponentsBuilder
                 .path("clients/{id}")
                 .buildAndExpand(client.getId())

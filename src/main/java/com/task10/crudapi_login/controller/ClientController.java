@@ -2,7 +2,6 @@ package com.task10.crudapi_login.controller;
 
 import com.task10.crudapi_login.form.ClientCreateForm;
 import com.task10.crudapi_login.entity.Client;
-import com.task10.crudapi_login.mapper.ClientMapper;
 import com.task10.crudapi_login.service.ClientService;
 
 import static org.springframework.web.servlet.function.RequestPredicates.path;
@@ -19,11 +18,9 @@ import java.util.Map;
 @RestController
 public class ClientController {
     public final ClientService clientService;
-    public final ClientMapper clientMapper;
 
-    public ClientController(ClientService clientService, ClientMapper clientMapper) {
+    public ClientController(ClientService clientService) {
         this.clientService = clientService;
-        this.clientMapper = clientMapper;
     }
 
     @GetMapping("clients")
@@ -48,6 +45,3 @@ public class ClientController {
         return ResponseEntity.created(uri).body(Map.of("message", "data successfully created"));
     }
 }
-
-
-

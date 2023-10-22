@@ -19,5 +19,5 @@ public interface ClientMapper {
 
     @Insert("INSERT INTO clients(name, age, phoneNumber) VALUES (#{name}, #{age}, #{phoneNumber})")
     @Options(useGeneratedKeys = true, keyProperty = "id")
-    void insertClient(Client client);
+    void insert(Client client);
 }

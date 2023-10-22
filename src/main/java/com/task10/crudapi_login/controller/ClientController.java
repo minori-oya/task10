@@ -2,7 +2,6 @@ package com.task10.crudapi_login.controller;
 
 import com.task10.crudapi_login.form.ClientCreateForm;
 import com.task10.crudapi_login.entity.Client;
-import com.task10.crudapi_login.mapper.ClientMapper;
 import com.task10.crudapi_login.service.ClientService;
 
 import static org.springframework.web.servlet.function.RequestPredicates.path;
@@ -19,17 +18,14 @@ import java.util.Map;
 @RestController
 public class ClientController {
     public final ClientService clientService;
-    public final ClientMapper clientMapper;
 
-    public ClientController(ClientService clientService, ClientMapper clientMapper) {
+    public ClientController(ClientService clientService) {
         this.clientService = clientService;
-        this.clientMapper = clientMapper;
     }
 
     @GetMapping("clients")
     public List<Client> clients() {
-        List<Client> clients = clientService.findAll();
-        return clients;
+        return clientService.findAll();
     }
 
     @GetMapping("clients/{id}")
@@ -40,7 +36,7 @@ public class ClientController {
 
     @PostMapping("clients")
     public ResponseEntity<Map<String, String>> createClient(@RequestBody @Validated ClientCreateForm clientCreateForm, UriComponentsBuilder uriComponentsBuilder) {
-        Client client = clientService.createClient(clientCreateForm.convertToClient());
+        Client client = clientService.create(clientCreateForm.convertToClient());
         URI uri = uriComponentsBuilder
                 .path("clients/{id}")
                 .buildAndExpand(client.getId())
@@ -48,6 +44,3 @@ public class ClientController {
         return ResponseEntity.created(uri).body(Map.of("message", "data successfully created"));
     }
 }
-
-
-

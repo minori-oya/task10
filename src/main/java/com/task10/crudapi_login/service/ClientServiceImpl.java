@@ -10,7 +10,7 @@ import java.util.Optional;
 
 @Service
 public class ClientServiceImpl implements ClientService {
-    private ClientMapper clientMapper;
+    private final ClientMapper clientMapper;
 
     public ClientServiceImpl(ClientMapper clientMapper) {
         this.clientMapper = clientMapper;
@@ -28,8 +28,8 @@ public class ClientServiceImpl implements ClientService {
     }
 
     @Override
-    public Client createClient(Client client) {
-        clientMapper.insertClient(client);
+    public Client create(Client client) {
+        clientMapper.insert(client);
         return client;
     }
 }

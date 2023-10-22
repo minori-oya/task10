@@ -3,10 +3,10 @@ package com.task10.crudapi_login.controller;
 import com.task10.crudapi_login.entity.Client;
 
 public class ClientResponse {
-    private int id;
-    private String name;
-    private int age;
-    private String phoneNumber;
+    private final int id;
+    private final String name;
+    private final int age;
+    private final String phoneNumber;
 
     public ClientResponse(Client client) {
         this.id = client.getId();

@@ -7,8 +7,7 @@ import org.hibernate.validator.constraints.Length;
 
 public class ClientCreateForm {
     public Client convertToClient() {
-        Client client = new Client(id, name, age, phoneNumber);
-        return client;
+        return new Client(id, name, age, phoneNumber);
     }
 
     private int id;

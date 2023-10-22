@@ -10,7 +10,7 @@ import java.util.Optional;
 
 @Service
 public class ClientServiceImpl implements ClientService {
-    private ClientMapper clientMapper;
+    private final ClientMapper clientMapper;
 
     public ClientServiceImpl(ClientMapper clientMapper) {
         this.clientMapper = clientMapper;

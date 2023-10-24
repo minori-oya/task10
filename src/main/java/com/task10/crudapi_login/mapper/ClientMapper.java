@@ -1,12 +1,13 @@
 package com.task10.crudapi_login.mapper;
 
 import com.task10.crudapi_login.entity.Client;
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Options;
 import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
 import java.util.Optional;
-
 
 @Mapper
 public interface ClientMapper {
@@ -15,4 +16,8 @@ public interface ClientMapper {
 
     @Select("SELECT * FROM clients WHERE id = #{id}")
     Optional<Client> findById(int id);
+
+    @Insert("INSERT INTO clients(name, age, phoneNumber) VALUES (#{name}, #{age}, #{phoneNumber})")
+    @Options(useGeneratedKeys = true, keyProperty = "id")
+    void insert(Client client);
 }

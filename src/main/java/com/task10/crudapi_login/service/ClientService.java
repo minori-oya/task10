@@ -9,5 +9,4 @@ public interface ClientService {
 
     Client findById(int id);
 
-    Client create(Client client);
 }

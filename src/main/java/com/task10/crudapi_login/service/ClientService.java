@@ -10,4 +10,6 @@ public interface ClientService {
     Client findById(int id);
 
     Client create(Client client);
+
+    void update(int id, int age, String phoneNumber);
 }

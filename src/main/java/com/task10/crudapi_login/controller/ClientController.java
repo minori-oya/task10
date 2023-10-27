@@ -2,6 +2,7 @@ package com.task10.crudapi_login.controller;
 
 import com.task10.crudapi_login.form.ClientCreateForm;
 import com.task10.crudapi_login.entity.Client;
+import com.task10.crudapi_login.form.ClientUpdateForm;
 import com.task10.crudapi_login.service.ClientService;
 
 import static org.springframework.web.servlet.function.RequestPredicates.path;
@@ -42,5 +43,11 @@ public class ClientController {
                 .buildAndExpand(client.getId())
                 .toUri();
         return ResponseEntity.created(uri).body(Map.of("message", "data successfully created"));
+    }
+
+    @PatchMapping("clients/{id}")
+    public ResponseEntity<Map<String, String>> update(@PathVariable("id") int id, @RequestBody @Validated ClientUpdateForm clientUpdateForm) {
+        clientService.update(id, clientUpdateForm.getAge(), clientUpdateForm.getPhoneNumber());
+        return ResponseEntity.ok(Map.of("message", "data successfully updated"));
     }
 }

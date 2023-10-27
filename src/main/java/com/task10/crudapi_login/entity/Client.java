@@ -6,9 +6,16 @@ public class Client {
     private int age;
     private String phoneNumber;
 
+    //ClientCreateFormのconvertToClient()
     public Client(int id, String name, int age, String phoneNumber) {
         this.id = id;
         this.name = name;
+        this.age = age;
+        this.phoneNumber = phoneNumber;
+    }
+
+    //ClientUpdateFormのconvertToClient()
+    public Client(int age, String phoneNumber) {
         this.age = age;
         this.phoneNumber = phoneNumber;
     }

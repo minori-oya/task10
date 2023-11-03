@@ -5,6 +5,7 @@ import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Options;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import java.util.List;
 import java.util.Optional;
@@ -20,4 +21,7 @@ public interface ClientMapper {
     @Insert("INSERT INTO clients(name, age, phoneNumber) VALUES (#{name}, #{age}, #{phoneNumber})")
     @Options(useGeneratedKeys = true, keyProperty = "id")
     void insert(Client client);
+
+    @Update("UPDATE clients SET age = #{age}, phoneNumber = #{phoneNumber} WHERE id = #{id}")
+    void update(Client client);
 }

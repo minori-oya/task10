@@ -14,7 +14,6 @@ public class Client {
         this.phoneNumber = phoneNumber;
     }
 
-    //ClientUpdateFormのconvertToClient()
     public Client(int age, String phoneNumber) {
         this.age = age;
         this.phoneNumber = phoneNumber;

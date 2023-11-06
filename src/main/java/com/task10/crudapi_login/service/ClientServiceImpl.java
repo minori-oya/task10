@@ -40,4 +40,10 @@ public class ClientServiceImpl implements ClientService {
         client.setPhoneNumber(phoneNumber);
         clientMapper.update(client);
     }
+
+    @Override
+    public void delete(int id) {
+        clientMapper.findById(id).orElseThrow(() -> new ClientNotFoundException("resource not found :" + id));
+        clientMapper.delete(id);
+    }
 }

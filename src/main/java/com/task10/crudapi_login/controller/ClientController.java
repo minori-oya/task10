@@ -9,6 +9,7 @@ import static org.springframework.web.servlet.function.RequestPredicates.path;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -54,5 +55,11 @@ public class ClientController {
     public ResponseEntity<Map<String, String>> update(@PathVariable("id") int id, @RequestBody @Validated ClientUpdateForm clientUpdateForm) {
         clientService.update(id, clientUpdateForm.getAge(), clientUpdateForm.getPhoneNumber());
         return ResponseEntity.ok(Map.of("message", "data successfully updated"));
+    }
+
+    @DeleteMapping("clients/{id}")
+    public ResponseEntity<Map<String, String>> delete(@PathVariable("id") int id) {
+        clientService.delete(id);
+        return ResponseEntity.ok(Map.of("message", "data successfully deleted"));
     }
 }

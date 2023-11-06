@@ -1,8 +1,6 @@
 package com.task10.crudapi_login.form;
 
-import com.task10.crudapi_login.entity.Client;
 import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotBlank;
 import org.hibernate.validator.constraints.Length;
 
 public class ClientUpdateForm {

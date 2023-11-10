@@ -14,4 +14,6 @@ public interface ClientService {
     void update(int id, int age, String phoneNumber);
 
     void delete(int id);
+
+    void deleteName(String name);
 }

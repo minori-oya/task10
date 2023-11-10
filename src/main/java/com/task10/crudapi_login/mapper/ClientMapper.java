@@ -28,4 +28,10 @@ public interface ClientMapper {
 
     @Delete("DELETE FROM clients WHERE id = #{id}")
     void delete(int id);
+
+    //nameが#{name}で始まるデータを削除
+    @Delete("DELETE FROM clients WHERE name like = #{name}")
+    void deleteName(String name);
+
+    Optional<Object> findByName(String name);
 }

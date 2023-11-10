@@ -62,4 +62,10 @@ public class ClientController {
         clientService.delete(id);
         return ResponseEntity.ok(Map.of("message", "data successfully deleted"));
     }
+
+    @DeleteMapping("clients/{name}")
+    public ResponseEntity<Map<String, String>> deleteName(@PathVariable("name") String name) {
+        clientService.deleteName(name);
+        return ResponseEntity.ok(Map.of("message", "data successfully deleted"));
+    }
 }

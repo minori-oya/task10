@@ -12,4 +12,8 @@ public interface ClientService {
     Client create(Client client);
 
     void update(int id, int age, String phoneNumber);
+
+    void delete(int id);
+
+    void deleteName(String name);
 }

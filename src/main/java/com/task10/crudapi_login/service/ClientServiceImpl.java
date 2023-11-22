@@ -1,5 +1,6 @@
 package com.task10.crudapi_login.service;
 
+import com.task10.crudapi_login.exception.ClientBadRequestException;
 import com.task10.crudapi_login.mapper.ClientMapper;
 import com.task10.crudapi_login.entity.Client;
 import com.task10.crudapi_login.exception.ClientNotFoundException;
@@ -39,5 +40,20 @@ public class ClientServiceImpl implements ClientService {
         client.setAge(age);
         client.setPhoneNumber(phoneNumber);
         clientMapper.update(client);
+    }
+
+    @Override
+    public void delete(int id) {
+        clientMapper.findById(id).orElseThrow(() -> new ClientNotFoundException("resource not found :" + id));
+        clientMapper.delete(id);
+    }
+
+    @Override
+    public void deleteName(String name) {
+        if (clientMapper.findByName(name).isPresent()) {
+            clientMapper.deleteName(name);
+        } else {
+            throw new ClientBadRequestException("resource is bad Request");
+        }
     }
 }

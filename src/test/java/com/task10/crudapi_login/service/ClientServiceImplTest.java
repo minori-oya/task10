@@ -55,4 +55,14 @@ public class ClientServiceImplTest {
             clientServiceImpl.findById(99);
         });
     }
+
+    @Test
+    public void 顧客データを新規登録する() {
+        Client client = new Client(4, "石田四郎", 45, "08044444444");
+        doNothing().when(clientMapper).insert(client);
+
+        Client actual = clientServiceImpl.create(client);
+        assertThat(actual).isEqualTo(new Client(4, "石田四郎", 45, "08044444444"));
+        verify(clientMapper, times(1)).insert(client);
+    }
 }

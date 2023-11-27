@@ -23,7 +23,7 @@ public interface ClientMapper {
     @Options(useGeneratedKeys = true, keyProperty = "id")
     void insert(Client client);
 
-    @Update("UPDATE clients SET age = #{age}, phoneNumber = #{phoneNumber} WHERE id = #{id}")
+    @Update("UPDATE clients SET name = #{name}, age = #{age}, phoneNumber = #{phoneNumber} WHERE id = #{id}")
     void update(Client client);
 
     @Delete("DELETE FROM clients WHERE id = #{id}")

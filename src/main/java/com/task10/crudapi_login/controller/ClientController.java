@@ -53,7 +53,7 @@ public class ClientController {
 
     @PatchMapping("clients/{id}")
     public ResponseEntity<Map<String, String>> update(@PathVariable("id") int id, @RequestBody @Validated ClientUpdateForm clientUpdateForm) {
-        clientService.update(id, clientUpdateForm.getAge(), clientUpdateForm.getPhoneNumber());
+        clientService.update(id, clientUpdateForm.getName(), clientUpdateForm.getAge(), clientUpdateForm.getPhoneNumber());
         return ResponseEntity.ok(Map.of("message", "data successfully updated"));
     }
 

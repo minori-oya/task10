@@ -6,7 +6,6 @@ public class Client {
     private int age;
     private String phoneNumber;
 
-    //ClientCreateFormのconvertToClient()
     public Client(int id, String name, int age, String phoneNumber) {
         this.id = id;
         this.name = name;
@@ -14,17 +13,8 @@ public class Client {
         this.phoneNumber = phoneNumber;
     }
 
-    public Client(int age, String phoneNumber) {
-        this.age = age;
-        this.phoneNumber = phoneNumber;
-    }
-
     public int getId() {
         return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getName() {

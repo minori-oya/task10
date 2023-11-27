@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.Optional;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.*;
 
@@ -29,7 +30,7 @@ public class ClientServiceImplTest {
     public void メソッド呼び出しで顧客データを全件取得すること() {
         List<Client> client = List.of(
                 new Client(1, "田中一郎", 20, "09011111111"),
-                new Client(2, "鈴木次郎", 15, "08022222222"),
+                new Client(2, "鈴木二郎", 15, "08022222222"),
                 new Client(3, "佐藤三郎", 30, "08033333333")
         );
         doReturn(client).when(clientMapper).findAll();
@@ -64,5 +65,29 @@ public class ClientServiceImplTest {
         Client actual = clientServiceImpl.create(client);
         assertThat(actual).isEqualTo(new Client(4, "石田四郎", 45, "08044444444"));
         verify(clientMapper, times(1)).insert(client);
+    }
+
+    @Test
+    public void 顧客データの属性を全て更新すること() {
+        Client client = new Client(2, "鈴木二郎", 15, "08022222222");
+        doReturn(Optional.of(client)).when(clientMapper).findById(2);
+
+        doNothing().when(clientMapper).update(new Client(2, "山本二郎", 16, "09022222222"));
+
+        Client actual = clientServiceImpl.update(2, "山本二郎", 16, "09022222222");
+        assertThat(actual).isEqualTo(new Client(2, "山本二郎", 16, "09022222222"));
+        verify(clientMapper, times(2)).findById(2);
+    }
+
+    @Test
+    public void 存在しないIDを更新しようとするとエラーを返す() throws ClientNotFoundException {
+        doReturn(Optional.empty()).when(clientMapper).findById(99);
+
+        assertThatThrownBy(() -> {
+            clientServiceImpl.update(99, "山本二郎", 16, "09022222222");
+        })
+                .isInstanceOf(ClientNotFoundException.class)
+                .hasMessage("resource not found");
+        verify(clientMapper, times(2)).findById(99);
     }
 }

@@ -93,4 +93,22 @@ public class ClientServiceImplTest {
                 .hasMessage("resource not found");
         verify(clientMapper, times(2)).findById(99);
     }
+
+    @Test
+    public void 顧客データを削除する() {
+        Client client = new Client(3, "佐藤三郎", 30, "08033333333");
+        doReturn(Optional.of(client)).when(clientMapper).findById(3);
+        clientServiceImpl.delete(3);
+        verify(clientMapper).delete(3);
+    }
+
+    @Test
+    public void 存在しないIDを削除しようとするとエラーを返す() throws ClientNotFoundException {
+        doReturn(Optional.empty()).when(clientMapper).findById(99);
+
+        assertThatThrownBy(() -> clientServiceImpl.delete(99))
+                .isInstanceOf(ClientNotFoundException.class)
+                .hasMessage("resource not found");
+        verify(clientMapper, times(3)).findById(99);
+    }
 }

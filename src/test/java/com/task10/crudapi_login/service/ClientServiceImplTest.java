@@ -110,5 +110,6 @@ public class ClientServiceImplTest {
                 .isInstanceOf(ClientNotFoundException.class)
                 .hasMessage("resource not found");
         verify(clientMapper, times(3)).findById(99);
+        verify(clientMapper, times(0)).delete(99);
     }
 }

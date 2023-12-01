@@ -35,12 +35,13 @@ public class ClientServiceImpl implements ClientService {
     }
 
     @Override
-    public void update(int id, String name, int age, String phoneNumber) {
+    public Client update(int id, String name, int age, String phoneNumber) {
         Client client = clientMapper.findById(id).orElseThrow(() -> new ClientNotFoundException("resource not found :" + id));
         client.setName(name);
         client.setAge(age);
         client.setPhoneNumber(phoneNumber);
         clientMapper.update(client);
+        return client;
     }
 
     @Override

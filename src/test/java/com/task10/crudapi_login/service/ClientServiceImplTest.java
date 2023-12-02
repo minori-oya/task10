@@ -109,7 +109,7 @@ public class ClientServiceImplTest {
         assertThatThrownBy(() -> clientServiceImpl.delete(99))
                 .isInstanceOf(ClientNotFoundException.class)
                 .hasMessage("resource not found");
-        verify(clientMapper, times(3)).findById(99);
+        verify(clientMapper, times(1)).findById(99);
         verify(clientMapper, times(0)).delete(99);
     }
 }

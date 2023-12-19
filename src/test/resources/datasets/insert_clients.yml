@@ -1,0 +1,17 @@
+clients:
+  - id: 1
+    name: "田中一郎"
+    age: 20
+    phoneNumber: "09011111111"
+  - id: 2
+    name: "鈴木二郎"
+    age: 15
+    phoneNumber: "08022222222"
+  - id: 3
+    name: "佐藤三郎"
+    age: 30
+    phoneNumber: "08033333333"
+  - id: 4
+    name: "石田四郎"
+    age: 45
+    phoneNumber: "08044444444"

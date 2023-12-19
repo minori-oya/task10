@@ -1,6 +1,7 @@
 package com.task10.crudapi_login.mapper;
 
 import com.github.database.rider.core.api.dataset.DataSet;
+import com.github.database.rider.core.api.dataset.ExpectedDataSet;
 import com.github.database.rider.spring.api.DBRider;
 import com.task10.crudapi_login.entity.Client;
 import org.junit.jupiter.api.Test;
@@ -52,5 +53,15 @@ class ClientMapperTest {
     void 存在しないIDを指定する場合にListが空の情報を取得すること() {
         Optional<Client> clients = clientMapper.findById(99);
         assertThat(clients).isEmpty();
+    }
+
+    @Test
+    @DataSet(value = "datasets/clients.yml")
+    @ExpectedDataSet(value = "datasets/insert_clients.yml", ignoreCols = "id")
+    @Transactional
+    void 顧客データを新規登録すること() {
+        Client client = new Client("石田四郎", 45, "08044444444");
+        clientMapper.insert(client);
+        assertThat(client.getId()).isGreaterThan(3);
     }
 }

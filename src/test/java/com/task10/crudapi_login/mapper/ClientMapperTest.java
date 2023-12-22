@@ -4,6 +4,7 @@ import com.github.database.rider.core.api.dataset.DataSet;
 import com.github.database.rider.core.api.dataset.ExpectedDataSet;
 import com.github.database.rider.spring.api.DBRider;
 import com.task10.crudapi_login.entity.Client;
+import it.unibo.tuprolog.solve.stdlib.primitive.Op;
 import org.junit.jupiter.api.Test;
 import org.mybatis.spring.boot.test.autoconfigure.MybatisTest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,11 +58,15 @@ class ClientMapperTest {
 
     @Test
     @DataSet(value = "datasets/clients.yml")
-    @ExpectedDataSet(value = "datasets/insert_clients.yml", ignoreCols = "id")
     @Transactional
     void 顧客データを新規登録すること() {
         Client client = new Client("石田四郎", 45, "08044444444");
         clientMapper.insert(client);
-        assertThat(client.getId()).isGreaterThan(3);
+        Optional<Client> actual = clientMapper.findById(client.getId());
+        assertThat(actual).isNotNull();
+        assertThat(actual.get()).isEqualTo(client.getId());
+        assertThat(actual.get()).isEqualTo(client.getName());
+        assertThat(actual.get()).isEqualTo(client.getAge());
+        assertThat(actual.get()).isEqualTo(client.getPhoneNumber());
     }
 }

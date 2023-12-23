@@ -13,6 +13,13 @@ public class Client {
         this.phoneNumber = phoneNumber;
     }
 
+    //DBテストのcreate処理で使用
+    public Client(String name, int age, String phoneNumber) {
+        this.name = name;
+        this.age = age;
+        this.phoneNumber = phoneNumber;
+    }
+
     public int getId() {
         return id;
     }

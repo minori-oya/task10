@@ -105,3 +105,43 @@ CPU Apple M2
 #### [ phoneNumberフィールドが9桁の場合]
 ![POST phoneNumber9](https://github.com/minori-oya/task10/assets/138114043/50d3d09e-5363-4efb-90f5-08a59bd0ef5a)
 
+
+# 概要
+* clientsテーブルのID３の顧客の「年齢」と「電話番号」を更新する処理を実装しました。
+* 存在しないIDの顧客データを更新しようとすると、ステータスコード４０４でエラーを返すバリデーション処理も実装しています。
+
+# 動作確認
+### データの更新 *"client/{id}"*
+レスポンス成功はステータスコード200を想定し、存在しないIDをリクエストした場合は404を想定しています。
+#### [ID3を更新処理]
+
+```java
+curl --location --request PATCH 'http://localhost:8080/clients/3' \
+--header 'Content-Type: application/json' \
+--data '{
+    "age": 31,
+    "phoneNumber": "08055555555"
+}'
+```
+![PATCH ID3](https://github.com/minori-oya/task10/assets/138114043/01ccf617-cc31-42aa-93fe-4f9d02da21c0)
+
+#### [存在しないIDをリクエストした時の例外処理]
+
+```java
+curl --location --request PATCH 'http://localhost:8080/clients/99' \
+--header 'Content-Type: application/json' \
+--data '{
+    "age": 31,
+    "phoneNumber": "08055555555"
+}'
+```
+![PATCH ID99](https://github.com/minori-oya/task10/assets/138114043/8818c5a3-5aae-4bcd-a81b-0549dc0dcbe6)
+
+#### [clientsテーブル]　
+**変更前**
+![変化前](https://github.com/minori-oya/task10/assets/138114043/17fccee1-1313-4562-bf60-c94715dcec58)
+
+**変更後**
+<img width="346" alt="変更後　" src="https://github.com/minori-oya/task10/assets/138114043/5c3a6d53-e3ca-441d-a1de-dc45524486c0">
+
+

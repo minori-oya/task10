@@ -48,7 +48,6 @@ CPU Apple M2
 # CRUD処理　概要
 顧客のログイン情報テーブルを作成し、CRUD処理を実装いたしました。  
 また、Create処理,Update処理,Delete処理にはバリデーションも実装しました。  
-主な実装は顧客データの全件取得、特定のIDで検索したデータの取得、新規顧客データの登録になります。
 
 #### [使用バリデーション一覧]
 <img width="282" alt="スクリーンショット 2023-10-21 19 20 16" src="https://github.com/minori-oya/task10/assets/138114043/6387a9f4-a260-41c7-8244-e2575f448896">
@@ -62,10 +61,11 @@ CPU Apple M2
 #### [clientsテーブル]
 <img width="365" alt="テーブル" src="https://github.com/minori-oya/task10/assets/138114043/1f48f35f-6031-4ef9-afba-0f96dd341822">
 
+## Read処理
+* 顧客データの全件取得、特定のIDで検索したデータの取得を実装しています。
+
 ### 顧客データの全件取得 *"client"*
 ![GET200](https://github.com/minori-oya/task10/assets/138114043/d7cacabe-a381-414a-8e82-f73537a32326)
-
-
 
 ### 特定のIDで検索したデータの取得 *"client/{id}"*
  特定のID情報取得のレスポンスはステータスコード200を想定し、存在しないIDをリクエストした場合は400を想定しています。
@@ -73,15 +73,15 @@ CPU Apple M2
 ####  [特定のID情報を取得]
 ![GET ID2](https://github.com/minori-oya/task10/assets/138114043/e2c6debb-98c9-4edf-8f55-149b9ad02cce)
 
-
 #### [存在しないIDをリクエストした時の例外処理]
 ![GET ID99](https://github.com/minori-oya/task10/assets/138114043/50d329a9-b547-4fe2-94d2-d2b2068c62b8)
 
+## Create処理
+* 新規顧客データの登録を実装しています。
 
 ### 新規顧客データの登録 *"client"*
 #### [clientsテーブル]
 <img width="749" alt="create処理　sql" src="https://github.com/minori-oya/task10/assets/138114043/1f2d6254-6468-424d-a7bc-2a7144724650">
-
 
 成功レスポンスはステータスコード201を想定し、バリデーション実装によりバッドリクエストの場合は400を想定しています。
 
@@ -106,12 +106,11 @@ CPU Apple M2
 ![POST phoneNumber9](https://github.com/minori-oya/task10/assets/138114043/50d3d09e-5363-4efb-90f5-08a59bd0ef5a)
 
 
-# 概要
+## Update処理
 * clientsテーブルのID３の顧客の「年齢」と「電話番号」を更新する処理を実装しました。
 * 存在しないIDの顧客データを更新しようとすると、ステータスコード４０４でエラーを返すバリデーション処理も実装しています。
 
-# 動作確認
-### データの更新 *"client/{id}"*
+### 顧客データの更新 *"client/{id}"*
 レスポンス成功はステータスコード200を想定し、存在しないIDをリクエストした場合は404を想定しています。
 #### [ID3を更新処理]
 
@@ -144,13 +143,11 @@ curl --location --request PATCH 'http://localhost:8080/clients/99' \
 **変更後**
 <img width="346" alt="変更後　" src="https://github.com/minori-oya/task10/assets/138114043/5c3a6d53-e3ca-441d-a1de-dc45524486c0">
 
-# 概要
+## Delete処理
 * clientsテーブルのID４の顧客データを削除する処理を実装しました。
 * 存在しないIDの顧客データを削除しようとすると、エラーを返すバリデーションも併せて実装いたしました。
 
-# 動作確認
-
-## データの削除　*"clients{id}"*
+### 顧客データの削除　*"clients{id}"*
 レスポンス成功はステータスコード２００を想定し、存在しないIDをリクエストした場合は４０４を想定しています。
 #### [ID4を削除処理]　
 ```java

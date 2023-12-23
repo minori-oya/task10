@@ -144,4 +144,27 @@ curl --location --request PATCH 'http://localhost:8080/clients/99' \
 **変更後**
 <img width="346" alt="変更後　" src="https://github.com/minori-oya/task10/assets/138114043/5c3a6d53-e3ca-441d-a1de-dc45524486c0">
 
+# 概要
+* clientsテーブルのID４の顧客データを削除する処理を実装しました。
+* 存在しないIDの顧客データを削除しようとすると、エラーを返すバリデーションも併せて実装いたしました。
+
+# 動作確認
+
+## データの削除　*"clients{id}"*
+レスポンス成功はステータスコード２００を想定し、存在しないIDをリクエストした場合は４０４を想定しています。
+#### [ID4を削除処理]　
+```java
+curl --location --request DELETE 'http://localhost:8080/clients/4' \
+```
+![DELETE id4](https://github.com/minori-oya/task10/assets/138114043/104d0047-dcc7-4ffc-b51d-ee8c5e8e36f3)
+#### [存在しないIDをリクエストした時の例外処理]
+```java
+curl --location --request DELETE 'http://localhost:8080/clients/99' \
+```
+![DELETE id99](https://github.com/minori-oya/task10/assets/138114043/162c5559-9892-40a1-ab06-522c0352da6d)
+#### [clientsテーブル]
+**変更前**
+![DELETE 変更前](https://github.com/minori-oya/task10/assets/138114043/175b2fbf-3223-4ce6-84e3-412b0f252622)
+**変更後**
+![DELETE 変更後](https://github.com/minori-oya/task10/assets/138114043/3c6d3337-70f2-4deb-8d26-a6544b273cd8)
 

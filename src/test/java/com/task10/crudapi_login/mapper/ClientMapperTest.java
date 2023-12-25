@@ -69,4 +69,22 @@ class ClientMapperTest {
         assertThat(actual.get()).isEqualTo(client.getAge());
         assertThat(actual.get()).isEqualTo(client.getPhoneNumber());
     }
+
+    @Test
+    @DataSet(value = "datasets/clients.yml")
+    @ExpectedDataSet(value = "datasets/update-clients.yml")
+    @Transactional
+    void 指定IDの顧客データが更新できること() {
+        Client client = new Client(2, "佐々木二郎", 16, "09022222222");
+        clientMapper.update(client);
+    }
+
+    @Test
+    @DataSet(value = "datasets/clients.yml")
+    @ExpectedDataSet(value = "datasets/clients.yml")
+    @Transactional
+    void 更新時に指定したidが存在しないときテーブルのレコードが更新されないこと() {
+        Client client = new Client(99, "水木しげる", 93, "09099999999");
+        clientMapper.update(client);
+    }
 }
